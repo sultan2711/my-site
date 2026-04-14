@@ -2,66 +2,74 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Розовая Пантера | Салон Красоты</title>
 <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
   body {
     font-family: 'Arial', sans-serif;
     background-color: #fdf0f5;
     color: #333;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
   }
   header {
     background-color: #e83e8c;
-    padding: 40px 20px;
+    padding: 30px 15px;
     text-align: center;
     color: white;
     box-shadow: 0 4px 15px rgba(232, 62, 140, 0.3);
   }
   h1 {
     font-family: 'Georgia', serif;
-    font-size: 3em;
+    font-size: 2.2em;
     margin: 0;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
   header p {
-    font-size: 1.2em;
+    font-size: 1em;
     margin-top: 10px;
   }
   nav {
     display: flex;
     justify-content: center;
     background-color: #212529;
-    padding: 15px;
+    padding: 10px;
     position: sticky;
     top: 0;
     z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
   }
   nav button {
     background: none;
     border: none;
     color: white;
-    padding: 10px 30px;
-    margin: 0 5px;
+    padding: 10px 15px;
+    margin: 0 2px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.3s ease;
     border-radius: 20px;
+    white-space: nowrap;
   }
   nav button:hover, nav button.active {
     background-color: #e83e8c;
-    transform: scale(1.05);
   }
   .tab-content {
     display: none;
-    padding: 60px 20px;
+    padding: 30px 15px;
     max-width: 900px;
     margin: 0 auto;
     min-height: 50vh;
+    box-sizing: border-box;
     animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   }
   .tab-content.active {
@@ -70,7 +78,7 @@
   @keyframes slideUp {
     from {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -80,72 +88,72 @@
   h2 {
     color: #e83e8c;
     text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 30px;
+    font-size: 1.8em;
+    margin-bottom: 20px;
   }
   h3 {
     color: #333;
-    font-size: 1.8em;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    font-size: 1.4em;
+    margin-top: 30px;
+    margin-bottom: 15px;
     text-align: center;
     border-bottom: 2px solid #e83e8c;
     padding-bottom: 10px;
   }
   .welcome-text {
     text-align: center;
-    font-size: 1.2em;
-    line-height: 1.6;
+    font-size: 1.1em;
+    line-height: 1.5;
   }
   .price-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  @media (min-width: 600px) {
+    .price-grid {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   .price-item {
     background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .price-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(232, 62, 140, 0.2);
   }
   .service-name {
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 0.95em;
+    padding-right: 10px;
   }
   .service-price {
     color: #e83e8c;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.1em;
     white-space: nowrap;
-    margin-left: 15px;
   }
   .contact-box {
     background: white;
-    padding: 40px;
+    padding: 25px 15px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
-    font-size: 1.2em;
-    line-height: 2;
-  }
-  .contact-box strong {
-    color: #e83e8c;
+    font-size: 1.1em;
+    line-height: 1.8;
   }
   .phone-link {
     color: #e83e8c;
     text-decoration: none;
     font-weight: bold;
+    white-space: nowrap;
   }
-  .phone-link:hover {
-    text-decoration: underline;
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 </style>
 </head>
@@ -158,56 +166,43 @@
 
 <nav>
   <button class="tab-link active" onclick="openTab(event, 'home')">Главная</button>
-  <button class="tab-link" onclick="openTab(event, 'prices')">Услуги и Цены</button>
+  <button class="tab-link" onclick="openTab(event, 'prices')">Услуги</button>
   <button class="tab-link" onclick="openTab(event, 'contact')">Контакты</button>
 </nav>
 
 <div id="home" class="tab-content active">
   <h2>Добро пожаловать</h2>
-  <img src="images/salon-interior.jpg" alt="Интерьер салона" style="width:100%; border-radius:20px; margin-bottom:20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); display:none;" onload="this.style.display='block'">
+  <img src="images/salon-interior.jpg" alt="Интерьер салона" style="border-radius:20px; margin-bottom:20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
   <p class="welcome-text">Окунитесь в атмосферу роскоши и стиля. Наши мастера подчеркнут вашу естественную красоту и создадут неповторимый образ.</p>
 </div>
 
 <div id="prices" class="tab-content">
   <h2>Прайс лист</h2>
   
-  <h3>Лазерная эпиляция (ELOS, SHR)</h3>
+  <h3>Лазерная эпиляция</h3>
   <div class="price-grid">
     <div class="price-item"><span class="service-name">Подмышки</span><span class="service-price">600 ₽</span></div>
     <div class="price-item"><span class="service-name">Ноги голень</span><span class="service-price">1000 ₽</span></div>
     <div class="price-item"><span class="service-name">Бикини глубокое</span><span class="service-price">1600 ₽</span></div>
-    <div class="price-item"><span class="service-name">КОМПЛЕКС (бикини, голень, подмышки)</span><span class="service-price">2700 ₽</span></div>
+    <div class="price-item"><span class="service-name">КОМПЛЕКС</span><span class="service-price">2700 ₽</span></div>
     <div class="price-item"><span class="service-name">Лицо</span><span class="service-price">600 ₽</span></div>
     <div class="price-item"><span class="service-name">Ноги полностью</span><span class="service-price">2000 ₽</span></div>
-    <div class="price-item"><span class="service-name">Бикини классика</span><span class="service-price">600 ₽</span></div>
-    <div class="price-item"><span class="service-name">Ягодицы</span><span class="service-price">800 ₽</span></div>
-    <div class="price-item"><span class="service-name">Спина</span><span class="service-price">1500 ₽</span></div>
-    <div class="price-item"><span class="service-name">Руки</span><span class="service-price">1000 ₽</span></div>
-    <div class="price-item"><span class="service-name">Декольте</span><span class="service-price">500 ₽</span></div>
-    <div class="price-item"><span class="service-name">Шея</span><span class="service-price">400 ₽</span></div>
-    <div class="price-item"><span class="service-name">Живот полностью</span><span class="service-price">800 ₽</span></div>
   </div>
 
-  <h3>Косметология и эстетика</h3>
+  <h3>Косметология</h3>
   <div class="price-grid">
-    <div class="price-item"><span class="service-name">Татуаж бровей (Напыление)</span><span class="service-price">4000 ₽</span></div>
+    <div class="price-item"><span class="service-name">Татуаж бровей</span><span class="service-price">4000 ₽</span></div>
     <div class="price-item"><span class="service-name">Татуаж губ</span><span class="service-price">4000 ₽</span></div>
-    <div class="price-item"><span class="service-name">Наращивание ресниц</span><span class="service-price">от 1500 ₽</span></div>
-    <div class="price-item"><span class="service-name">RF лифтинг (Лицо)</span><span class="service-price">1500 ₽</span></div>
-    <div class="price-item"><span class="service-name">RF лифтинг (Шея)</span><span class="service-price">1000 ₽</span></div>
-    <div class="price-item"><span class="service-name">RF лифтинг (Декольте)</span><span class="service-price">1000 ₽</span></div>
-    <div class="price-item"><span class="service-name">BBL Омоложение (Лицо)</span><span class="service-price">2000 ₽</span></div>
-    <div class="price-item"><span class="service-name">Карбоновый пилинг + маска</span><span class="service-price">1500 ₽</span></div>
-    <div class="price-item"><span class="service-name">Лечение лазерное акне</span><span class="service-price">1500 ₽</span></div>
-    <div class="price-item"><span class="service-name">Лечение пигментации</span><span class="service-price">1500 ₽</span></div>
+    <div class="price-item"><span class="service-name">Ресницы</span><span class="service-price">от 1500 ₽</span></div>
+    <div class="price-item"><span class="service-name">RF лифтинг</span><span class="service-price">1500 ₽</span></div>
   </div>
 </div>
 
 <div id="contact" class="tab-content">
   <h2>Свяжитесь с нами</h2>
   <div class="contact-box">
-    <p><strong>Телефон:</strong> <a href="tel:+79184299927" class="phone-link">+7 (918) 429-99-27</a></p>
-    <p><strong>Адрес:</strong> пгт. Яблоновский, ул. Космическая 88, корпус 6, кабинет 8</p>
+    <p><strong>Телефон:</strong><br> <a href="tel:+79184299927" class="phone-link">+7 (918) 429-99-27</a></p>
+    <p><strong>Адрес:</strong><br> пгт. Яблоновский, ул. Космическая 88, корпус 6, кабинет 8</p>
   </div>
 </div>
 
@@ -224,6 +219,7 @@
     }
     document.getElementById(tabName).classList.add("active");
     evt.currentTarget.classList.add("active");
+    window.scrollTo(0,0);
   }
 </script>
 </body>
