@@ -1,157 +1,159 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Розовая Пантера — Салон красоты в Яблоновском | Эпиляция и Косметология</title>
-  
-  <meta name="description" content="Салон красоты «Розовая Пантера» в Яблоновском. Профессиональная лазерная эпиляция, татуаж, РФ-лифтинг и косметология по доступным ценам. Записывайтесь онлайн!">
-  
-  <meta name="keywords" content="Розовая Пантера, салон красоты Яблоновский, лазерная эпиляция Яблоновский, татуаж бровей, косметолог Яблоновка, РФ лифтинг, карбоновый пилинг">
-
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fdf0f5;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Розовая Пантера | Салон Красоты</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fdf0f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  header {
+    background-color: #e83e8c;
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 15px rgba(232, 62, 140, 0.3);
+  }
+  h1 {
+    font-family: 'Georgia', serif;
+    font-size: 3em;
+    margin: 0;
+    letter-spacing: 2px;
+  }
+  header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    background-color: #212529;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+  }
+  nav button:hover, nav button.active {
+    background-color: #e83e8c;
+    transform: scale(1.05);
+  }
+  .tab-content {
+    display: none;
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 50vh;
+    animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .tab-content.active {
+    display: block;
+  }
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
     }
-    header {
-      background-color: #e83e8c;
-      padding: 40px 20px;
-      text-align: center;
-      color: white;
-      box-shadow: 0 4px 15px rgba(232, 62, 140, 0.3);
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    h1 {
-      font-family: 'Georgia', serif;
-      font-size: 3em;
-      margin: 0;
-      letter-spacing: 2px;
-    }
-    header p {
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #212529;
-      padding: 15px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav button {
-      background: none;
-      border: none;
-      color: white;
-      padding: 10px 30px;
-      margin: 0 5px;
-      cursor: pointer;
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      border-radius: 20px;
-    }
-    nav button:hover, nav button.active {
-      background-color: #e83e8c;
-      transform: scale(1.05);
-    }
-    .tab-content {
-      display: none;
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: 0 auto;
-      min-height: 50vh;
-      animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .tab-content.active {
-      display: block;
-    }
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    h2 {
-      color: #e83e8c;
-      text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 30px;
-    }
-    h3 {
-      color: #333;
-      font-size: 1.8em;
-      margin-top: 40px;
-      margin-bottom: 20px;
-      text-align: center;
-      border-bottom: 2px solid #e83e8c;
-      padding-bottom: 10px;
-    }
-    .welcome-text {
-      text-align: center;
-      font-size: 1.2em;
-      line-height: 1.6;
-    }
-    .price-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .price-item {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .price-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(232, 62, 140, 0.2);
-    }
-    .service-name {
-      font-weight: bold;
-      font-size: 1.1em;
-    }
-    .service-price {
-      color: #e83e8c;
-      font-weight: bold;
-      font-size: 1.2em;
-      white-space: nowrap;
-      margin-left: 15px;
-    }
-    .contact-box {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      text-align: center;
-      font-size: 1.2em;
-      line-height: 2;
-    }
-    .contact-box strong {
-      color: #e83e8c;
-    }
-  </style>
+  }
+  h2 {
+    color: #e83e8c;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+  }
+  h3 {
+    color: #333;
+    font-size: 1.8em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #e83e8c;
+    padding-bottom: 10px;
+  }
+  .welcome-text {
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .price-item {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .price-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(232, 62, 140, 0.2);
+  }
+  .service-name {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  .service-price {
+    color: #e83e8c;
+    font-weight: bold;
+    font-size: 1.2em;
+    white-space: nowrap;
+    margin-left: 15px;
+  }
+  .contact-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 2;
+  }
+  .contact-box strong {
+    color: #e83e8c;
+  }
+  .phone-link {
+    color: #e83e8c;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .phone-link:hover {
+    text-decoration: underline;
+  }
+</style>
 </head>
 <body>
 
 <header>
   <h1>Розовая Пантера</h1>
-  <p>Салон грации и совершенства в Яблоновском</p>
+  <p>Салон грации и совершенства</p>
 </header>
 
 <nav>
@@ -163,11 +165,11 @@
 <div id="home" class="tab-content active">
   <h2>Добро пожаловать</h2>
   <img src="images/salon-interior.jpg" alt="Интерьер салона" style="width:100%; border-radius:20px; margin-bottom:20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); display:none;" onload="this.style.display='block'">
-  <p class="welcome-text">Окунитесь в атмосферу роскоши и стиля в пгт. Яблоновский. Наши мастера подчеркнут вашу естественную красоту с помощью современных лазерных и косметологических методик.</p>
+  <p class="welcome-text">Окунитесь в атмосферу роскоши и стиля. Наши мастера подчеркнут вашу естественную красоту и создадут неповторимый образ.</p>
 </div>
 
 <div id="prices" class="tab-content">
-  <h2>Прайс-лист</h2>
+  <h2>Прайс лист</h2>
   
   <h3>Лазерная эпиляция (ELOS, SHR)</h3>
   <div class="price-grid">
@@ -204,9 +206,8 @@
 <div id="contact" class="tab-content">
   <h2>Свяжитесь с нами</h2>
   <div class="contact-box">
-    <p><strong>Телефон:</strong> +7 (999) 000-00-00</p>
-    <p><strong>Адрес:</strong> пгт. Яблоновский, ул. Твоя Улица, д. 1</p>
-    <p><strong>Время работы:</strong> Ежедневно с 10:00 до 22:00</p>
+    <p><strong>Телефон:</strong> <a href="tel:+79184299927" class="phone-link">+7 (918) 429-99-27</a></p>
+    <p><strong>Адрес:</strong> пгт. Яблоновский, ул. Космическая 88, корпус 6, кабинет 8</p>
   </div>
 </div>
 
