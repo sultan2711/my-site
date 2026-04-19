@@ -191,20 +191,26 @@
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 
+    // ДИАГНОСТИКА: показываем в консоли, какой файл пытаемся загрузить
+    console.log(`КЛИК ПО: ${title}`);
+    console.log(`ПЫТАЮСЬ ЗАГРУЗИТЬ ФАЙЛ: ${fileName}`);
+
     try {
-      // Добавляем случайный параметр к URL, чтобы избежать кэширования
       const url = fileName + '?t=' + new Date().getTime();
       const response = await fetch(url);
       
+      console.log(`СТАТУС ОТВЕТА: ${response.status} ${response.statusText}`);
+      
       if (!response.ok) {
-        throw new Error(`Файл ${fileName} не найден (ошибка ${response.status})`);
+        throw new Error(`Файл ${fileName} не найден`);
       }
       
       const text = await response.text();
+      console.log(`СОДЕРЖИМОЕ ФАЙЛА (первые 50 символов): ${text.substring(0, 50)}`);
       modalBody.innerText = text;
     } catch (error) {
-      modalBody.innerHTML = `❌ Ошибка: файл "${fileName}" не найден.<br><br>Проверь:<br>1. Файл лежит в той же папке, что и index.html<br>2. Имя файла написано точно так же (с учётом регистра)<br>3. Файл имеет расширение .txt`;
-      console.error(error);
+      modalBody.innerText = `ОШИБКА: файл "${fileName}" не загрузился. Открой консоль (F12) чтобы увидеть детали.`;
+      console.error("ОШИБКА ЗАГРУЗКИ:", error);
     }
   }
 
