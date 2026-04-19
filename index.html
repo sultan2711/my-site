@@ -61,12 +61,12 @@
     </div>
     <div class="slide" style="background-image: url('cosmetology.jpg');">
       <div class="overlay">
-        <div class="service-title" onclick="loadAndShowInfo('Косметология', 'cosmetology.txt')">Косметология</div>
+        <div class="service-title" onclick="loadAndShowInfo('Косметология', 'Элос (ELOS) эпиляция.txt')">Косметология</div>
       </div>
     </div>
     <div class="slide" style="background-image: url('lashes.jpg');">
       <div class="overlay">
-        <div class="service-title" onclick="loadAndShowInfo('Наращивание ресниц', 'lashes.txt')">Наращивание ресниц</div>
+        <div class="service-title" onclick="loadAndShowInfo('Наращивание ресниц', 'Элос (ELOS) эпиляция.txt')">Наращивание ресниц</div>
       </div>
     </div>
   </div>
@@ -144,7 +144,6 @@
     }
   }, 4000);
 
-  // Измененная функция: теперь принимает название файла
   async function loadAndShowInfo(title, fileName) {
     const modal = document.getElementById('infoModal');
     const modalTitle = document.getElementById('modalTitle');
@@ -156,13 +155,12 @@
     document.body.style.overflow = 'hidden';
 
     try {
-      // Подгружаем текст из переданного файла (например, 'Элос (ELOS) эпиляция.txt')
       const response = await fetch(fileName);
       if (!response.ok) throw new Error('Файл не найден');
       const text = await response.text();
       modalBody.innerText = text;
     } catch (error) {
-      modalBody.innerText = "Ошибка: не удалось загрузить файл " + fileName;
+      modalBody.innerText = "Ошибка: не удалось найти файл " + fileName;
       console.error(error);
     }
   }
