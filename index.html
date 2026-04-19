@@ -19,8 +19,20 @@
 
   .slider-container { position: relative; width: 100%; max-width: 800px; height: 400px; margin: 20px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
   .slides-wrapper { position: relative; width: 100%; height: 100%; }
-  .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; background-size: cover; background-position: center; }
-  .slide.active { opacity: 1; }
+  .slide { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out; 
+    background-size: cover; 
+    background-position: center;
+    pointer-events: none;
+  }
+  .slide.active { 
+    opacity: 1; 
+    pointer-events: auto;
+  }
   .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; justify-content: center; align-items: center; }
   .service-title { color: white; font-size: 1.8em; font-weight: bold; text-align: center; cursor: pointer; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); padding: 20px; }
   
@@ -191,26 +203,14 @@
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 
-    // ДИАГНОСТИКА: показываем в консоли, какой файл пытаемся загрузить
-    console.log(`КЛИК ПО: ${title}`);
-    console.log(`ПЫТАЮСЬ ЗАГРУЗИТЬ ФАЙЛ: ${fileName}`);
-
     try {
-      const url = fileName + '?t=' + new Date().getTime();
-      const response = await fetch(url);
-      
-      console.log(`СТАТУС ОТВЕТА: ${response.status} ${response.statusText}`);
-      
-      if (!response.ok) {
-        throw new Error(`Файл ${fileName} не найден`);
-      }
-      
+      const response = await fetch(fileName);
+      if (!response.ok) throw new Error('Файл не найден');
       const text = await response.text();
-      console.log(`СОДЕРЖИМОЕ ФАЙЛА (первые 50 символов): ${text.substring(0, 50)}`);
       modalBody.innerText = text;
     } catch (error) {
-      modalBody.innerText = `ОШИБКА: файл "${fileName}" не загрузился. Открой консоль (F12) чтобы увидеть детали.`;
-      console.error("ОШИБКА ЗАГРУЗКИ:", error);
+      modalBody.innerText = "Ошибка: не удалось найти файл " + fileName;
+      console.error(error);
     }
   }
 
