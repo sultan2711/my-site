@@ -192,12 +192,18 @@
     document.body.style.overflow = 'hidden';
 
     try {
-      const response = await fetch(fileName);
-      if (!response.ok) throw new Error('Файл не найден');
+      // Добавляем случайный параметр к URL, чтобы избежать кэширования
+      const url = fileName + '?t=' + new Date().getTime();
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error(`Файл ${fileName} не найден (ошибка ${response.status})`);
+      }
+      
       const text = await response.text();
       modalBody.innerText = text;
     } catch (error) {
-      modalBody.innerText = "Ошибка: не удалось найти файл " + fileName;
+      modalBody.innerHTML = `❌ Ошибка: файл "${fileName}" не найден.<br><br>Проверь:<br>1. Файл лежит в той же папке, что и index.html<br>2. Имя файла написано точно так же (с учётом регистра)<br>3. Файл имеет расширение .txt`;
       console.error(error);
     }
   }
