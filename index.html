@@ -40,8 +40,8 @@
     position: absolute; 
     top: 50%; 
     transform: translateY(-50%); 
-    width: 40px; 
-    height: 40px; 
+    width: 58px;  /* 48px + отступы для кликабельной области */
+    height: 58px; /* 48px + отступы для кликабельной области */
     background: rgba(0,0,0,0.4);
     display: flex;
     align-items: center;
@@ -52,18 +52,19 @@
     transition: background 0.3s; 
     user-select: none; 
     border: 2px solid rgba(255,255,255,0.6);
-    overflow: hidden;
+    padding: 0;
   }
   .slider-arrow:hover { background: rgba(0,0,0,0.8); }
   .slider-arrow-left { left: 15px; }
   .slider-arrow-right { right: 15px; }
   
-  /* Стили для картинок внутри стрелок */
+  /* Стили для картинок внутри стрелок - оригинальный размер 48x48 */
   .slider-arrow img {
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
     display: block;
-    filter: brightness(0) invert(1); /* Делаем иконки белыми на случай, если они цветные */
+    object-fit: contain;
+    pointer-events: none; /* Чтобы клик проходил через картинку к кнопке */
   }
 
   .slider-dots { position: absolute; bottom: 15px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; z-index: 10; }
@@ -83,6 +84,18 @@
   .service-price { color: #e83e8c; font-weight: bold; font-size: 1.1em; white-space: nowrap; }
   .contact-box { background: white; padding: 25px 15px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; line-height: 1.8; }
   .phone-link { color: #e83e8c; text-decoration: none; font-weight: bold; }
+
+  /* Адаптив для мобильных устройств */
+  @media (max-width: 480px) {
+    .slider-arrow {
+      width: 44px;
+      height: 44px;
+    }
+    .slider-arrow img {
+      width: 36px;
+      height: 36px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -101,14 +114,14 @@
 <div id="home" class="tab-content active">
   <h2 style="margin-top: 10px;">Привет.</h2>
   <div class="slider-container">
-    <!-- Стрелка влево с картинкой -->
+    <!-- Стрелка влево с картинкой 48x48 -->
     <div class="slider-arrow slider-arrow-left" onclick="prevSlide()">
-      <img src="left.png" alt="Назад">
+      <img src="./left.png" alt="Назад">
     </div>
     
-    <!-- Стрелка вправо с картинкой -->
+    <!-- Стрелка вправо с картинкой 48x48 -->
     <div class="slider-arrow slider-arrow-right" onclick="nextSlide()">
-      <img src="right.png" alt="Вперед">
+      <img src="./right.png" alt="Вперед">
     </div>
     
     <div class="slides-wrapper">
